@@ -27,6 +27,12 @@ public abstract class BaseZLogic extends ZLogic {
 	@Override
    protected boolean auth(ZLogicParam logicParam, ZSimpleJsonObject res, EntityManager em){
 
+		String userId = logicParam.getUserId();
+		String apiKey = logicParam.getApiKey();
+		
+		// find db
+		
+		
 		// todo: 
 		return true;
    }

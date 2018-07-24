@@ -8,28 +8,28 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 
 import org.apache.log4j.Logger;
+import org.jbiz.demo.logic.GetUsersLogic;
 import org.jbiz.demo.logic.LoginLogic;
+import org.jbiz.demo.logic.param.GetUsersLogicParam;
 import org.jbiz.demo.logic.param.LoginLogicParam;
 
 
 @Produces("application/json;charset=UTF-8")
-@Path("login")
-public class LoginAction extends BaseZAction {
+@Path("user")
+public class UserAction extends BaseZAction {
 
-	static Logger logger = Logger.getLogger(LoginAction.class);
+	static Logger logger = Logger.getLogger(UserAction.class);
 
 	@POST
-	@Path("login.do")
+	@Path("getUsers.do")
 	public String login(
-			@FormParam("account") String account,
-			@FormParam("password") String password,
+			@FormParam("userId") String userId,
+			@FormParam("apiKey") String apiKey,
 			@Context HttpServletRequest request) {
 		
-		LoginLogicParam logicParam = new LoginLogicParam(null, null, request);
+		GetUsersLogicParam logicParam = new GetUsersLogicParam(userId, apiKey, request);
 		
-		logicParam.setAccount(account);
-		logicParam.setPassword(password);
 		
-		return new LoginLogic().process(logicParam);
+		return new GetUsersLogic().process(logicParam);
 	}
 }
